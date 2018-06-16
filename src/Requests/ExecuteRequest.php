@@ -6,7 +6,7 @@ use Aplr\LaravelPaypal\Request;
 
 use PayPal\v1\Payments\PaymentExecuteRequest;
 
-class SaleRequest extends Request {
+class ExecuteRequest extends Request {
 
     private $execution;
 
