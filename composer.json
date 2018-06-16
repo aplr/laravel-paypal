@@ -24,16 +24,16 @@
     },
     "autoload": {
         "psr-4": {
-            "Aplr\\LaravelBraintree\\": "src/"
+            "Aplr\\LaravelPaypal\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Aplr\\LaravelBraintree\\ServiceProvider"
+                "Aplr\\LaravelPaypal\\ServiceProvider"
             ],
             "aliases": {
-                "Braintree": "Aplr\\LaravelBraintree\\Facade"
+                "Paypal": "Aplr\\LaravelPaypal\\Facade"
             }
         }
     },
