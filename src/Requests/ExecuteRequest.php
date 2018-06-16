@@ -3,6 +3,7 @@
 namespace Aplr\LaravelPaypal\Requests;
 
 use Aplr\LaravelPaypal\Request;
+use Aplr\LaravelPaypal\Execution;
 
 use PayPal\v1\Payments\PaymentExecuteRequest;
 
