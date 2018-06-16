@@ -19,7 +19,7 @@ abstract class Request {
         $request->body = $this->getBody();
 
         try {
-            $this->handleResponse($client->execute($request));
+            return $this->handleResponse($client->execute($request));
         } catch (HttpException $e) {
             $this->handleException($e);
         }

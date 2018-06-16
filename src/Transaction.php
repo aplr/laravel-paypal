@@ -18,8 +18,10 @@ class Transaction implements Arrayable {
     public function toArray()
     {
         return [
-            'amount' => number_format($this->amount, 2),
-            'currency' => $this->currency
+            'amount' => [
+                'total' => number_format($this->amount, 2),
+                'currency' => $this->currency
+            ]
         ];
     }
 
