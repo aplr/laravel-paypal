@@ -31,8 +31,8 @@ class SaleRequest extends Request {
             'intent' => 'sale',
             'transactions' => $this->getTransactions(),
             'redirect_urls' => [
-                'cancel_url' => $this->cancel_url,
-                'return_url' => $this->return_url
+                'cancel_url' => $this->cancelUrl,
+                'return_url' => $this->returnUrl
             ],
             'payer' => [
                 'payment_method' => 'paypal'
