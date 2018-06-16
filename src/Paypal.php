@@ -11,6 +11,9 @@ use PayPal\Core\ProductionEnvironment;
 use BraintreeHttp\HttpException;
 use BraintreeHttp\HttpResponse;
 
+use Aplr\LaravelPaypal\Requests\SaleRequest;
+use Aplr\LaravelPaypal\Requests\ExecuteRequest;
+
 class Paypal {
     
     private $config;
@@ -40,6 +43,13 @@ class Paypal {
             $transaction,
             $this->config['cancel_url'],
             $this->config['return_url']
+        ));
+    }
+
+    public function execute(Execution $payment)
+    {
+        return $this->request(new ExecuteRequest(
+            $execution
         ));
     }
 
