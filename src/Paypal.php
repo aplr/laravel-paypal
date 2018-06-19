@@ -11,6 +11,7 @@ use PayPal\Core\ProductionEnvironment;
 use BraintreeHttp\HttpException;
 use BraintreeHttp\HttpResponse;
 
+use Aplr\LaravelPaypal\Requests\GetRequest;
 use Aplr\LaravelPaypal\Requests\SaleRequest;
 use Aplr\LaravelPaypal\Requests\ExecuteRequest;
 
@@ -43,6 +44,13 @@ class Paypal {
             $transaction,
             $this->config['cancel_url'],
             $this->config['return_url']
+        ));
+    }
+
+    public function get(string $id)
+    {
+        return $this->request(new GetRequest(
+            $id
         ));
     }
 
