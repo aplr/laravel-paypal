@@ -2,9 +2,7 @@
 
 namespace Aplr\LaravelPaypal;
 
-use Illuminate\Contracts\Support\Arrayable;
-
-class Execution implements Arrayable {
+class Execution {
 
     private $paymentId;
     private $payerId;

@@ -46,7 +46,7 @@ class Paypal {
         ));
     }
 
-    public function execute(Execution $payment)
+    public function execute(Execution $execution)
     {
         return $this->request(new ExecuteRequest(
             $execution
