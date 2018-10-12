@@ -12,12 +12,16 @@ class SaleRequest extends Request {
     private $cancelUrl;
     private $returnUrl;
     private $transaction;
+    private $address;
+    private $items;
 
-    public function __construct(Transaction $transaction, string $cancelUrl, string $returnUrl)
+    public function __construct(Transaction $transaction, ?Address $address, array $items, string $cancelUrl, string $returnUrl)
     {
         $this->cancelUrl = $cancelUrl;
         $this->returnUrl = $returnUrl;
         $this->transaction = $transaction;
+        $this->address = null;
+        $this->items = [];
     }
 
     protected function createRequest()
@@ -30,6 +34,7 @@ class SaleRequest extends Request {
         return [
             'intent' => 'sale',
             'transactions' => $this->getTransactions(),
+            'item_list' => $this->getItemList(),
             'redirect_urls' => [
                 'cancel_url' => $this->cancelUrl,
                 'return_url' => $this->returnUrl
@@ -45,6 +50,23 @@ class SaleRequest extends Request {
         return [
             $this->transaction->toArray()
         ];
+    }
+
+    private function getItemList()
+    {
+        $itemList = [];
+
+        if (!is_null($this->address)) {
+            $itemList['shipping_address'] = $this->address->toArray();
+        }
+        
+        if (!empty($this->items)) {
+            $itemList['items'] = collect($this->items)->map(function ($item) {
+                return $item->toArray();
+            });
+        }
+
+        return $itemList;
     }
 
 }

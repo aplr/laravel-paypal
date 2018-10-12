@@ -38,10 +38,12 @@ class Paypal {
         throw new InvalidEnvironmentException();
     }
 
-    public function sale(Transaction $transaction)
+    public function sale(Transaction $transaction, array $items = [], ?Address $address = null)
     {
         return $this->request(new SaleRequest(
             $transaction,
+            $address,
+            $items,
             $this->config['cancel_url'],
             $this->config['return_url']
         ));
