@@ -12,7 +12,7 @@ class Item implements Arrayable {
     private $price;
     private $sku;
 
-    public function __construct(string $name, string $description, string $sku, int $quantity, flaot $price)
+    public function __construct(string $name, string $description, string $sku, int $quantity, float $price)
     {
         $this->name = $name;
         $this->description = $description;
