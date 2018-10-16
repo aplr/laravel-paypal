@@ -27,8 +27,8 @@ class Item implements Arrayable {
             'name' => $this->name,
             'description' => $this->description,
             'sku' => $this->sku,
-            'quantity' => $this->quantity,
-            'price' => $this->price
+            'quantity' => "{$this->quantity}",
+            'price' => "{$this->price}"
         ];
     }
 
