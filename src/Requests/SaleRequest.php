@@ -17,11 +17,11 @@ class SaleRequest extends Request {
 
     public function __construct(Transaction $transaction, ?Address $address, array $items, string $cancelUrl, string $returnUrl)
     {
+        $this->transaction = $transaction;
+        $this->items = $items;
+        $this->address = $address;
         $this->cancelUrl = $cancelUrl;
         $this->returnUrl = $returnUrl;
-        $this->transaction = $transaction;
-        $this->address = null;
-        $this->items = [];
     }
 
     protected function createRequest()
