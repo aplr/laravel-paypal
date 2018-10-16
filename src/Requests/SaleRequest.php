@@ -62,9 +62,7 @@ class SaleRequest extends Request {
         }
         
         if (!empty($this->items)) {
-            $itemList['items'] = collect($this->items)->map(function ($item) {
-                return $item->toArray();
-            });
+            $itemList['items'] = collect($this->items)->toArray();
         }
 
         return $itemList;
