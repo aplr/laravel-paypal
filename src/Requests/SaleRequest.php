@@ -12,14 +12,10 @@ class SaleRequest extends Request {
     private $cancelUrl;
     private $returnUrl;
     private $transaction;
-    private $address;
-    private $items;
 
-    public function __construct(Transaction $transaction, ?Address $address, array $items, string $cancelUrl, string $returnUrl)
+    public function __construct(Transaction $transaction, string $cancelUrl, string $returnUrl)
     {
         $this->transaction = $transaction;
-        $this->items = $items;
-        $this->address = $address;
         $this->cancelUrl = $cancelUrl;
         $this->returnUrl = $returnUrl;
     }
@@ -33,15 +29,13 @@ class SaleRequest extends Request {
     {
         return [
             'intent' => 'sale',
+            'payer' => [
+                'payment_method' => 'paypal'
+            ],
             'transactions' => $this->getTransactions(),
-            'item_list' => $this->getItemList(),
-            'invoice_number' => $this->transaction->getOrderNumber(),
             'redirect_urls' => [
                 'cancel_url' => $this->cancelUrl,
                 'return_url' => $this->returnUrl
-            ],
-            'payer' => [
-                'payment_method' => 'paypal'
             ]
         ];
     }
@@ -51,21 +45,6 @@ class SaleRequest extends Request {
         return [
             $this->transaction->toArray()
         ];
-    }
-
-    private function getItemList()
-    {
-        $itemList = [];
-
-        if (!is_null($this->address)) {
-            $itemList['shipping_address'] = $this->address->toArray();
-        }
-        
-        if (!empty($this->items)) {
-            $itemList['items'] = collect($this->items)->toArray();
-        }
-
-        return $itemList;
     }
 
 }
