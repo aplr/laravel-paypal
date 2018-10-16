@@ -23,7 +23,7 @@ class Transaction implements Arrayable {
     public function toArray()
     {
         return [
-            'amount' => $this->amount,
+            'amount' => $this->amount->toArray(),
             'invoice_number' => $this->orderNumber,
             'item_list' => $this->buildItemList(),
         ];
@@ -34,11 +34,11 @@ class Transaction implements Arrayable {
         $itemList = [];
 
         if (!is_null($this->address)) {
-            $itemList['shipping_address'] = $this->address;
+            $itemList['shipping_address'] = $this->address->toArray();
         }
         
         if (!empty($this->items)) {
-            $itemList['items'] = $this->items;
+            $itemList['items'] = collect($this->items)->toArray();
         }
 
         return $itemList;

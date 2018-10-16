@@ -28,7 +28,8 @@ class Item implements Arrayable {
             'description' => $this->description,
             'sku' => $this->sku,
             'quantity' => "{$this->quantity}",
-            'price' => number_format($this->price, 2)
+            'price' => number_format($this->price, 2),
+            'currency' => 'EUR'
         ];
     }
 
