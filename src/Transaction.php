@@ -7,18 +7,15 @@ use Illuminate\Contracts\Support\Arrayable;
 class Transaction implements Arrayable {
 
     private $amount;
-    private $currency;
 
     private $items;
     private $address;
     private $orderNumber;
 
-    public function __construct(string $orderNumber, float $amount, string $currency, array $items = [], ?Address $address = null)
+    public function __construct(string $orderNumber, Amount $amount, array $items = [], ?Address $address = null)
     {
-        $this->amount = $amount;
-        $this->currency = $currency;
-
         $this->items = $items;
+        $this->amount = $amount;
         $this->address = $address;
         $this->orderNumber = $orderNumber;
     }
@@ -26,16 +23,13 @@ class Transaction implements Arrayable {
     public function toArray()
     {
         return [
-            'amount' => [
-                'total' => number_format($this->amount, 2),
-                'currency' => $this->currency
-            ],
+            'amount' => $this->amount,
             'invoice_number' => $this->orderNumber,
-            'item_list' => $this->getItemList(),
+            'item_list' => $this->buildItemList(),
         ];
     }
 
-    private function getItemList()
+    private function buildItemList()
     {
         $itemList = [];
 

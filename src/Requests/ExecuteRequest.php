@@ -26,15 +26,7 @@ class ExecuteRequest extends Request {
     protected function getBody()
     {
         return [
-            'payer_id' => $this->execution->getPayerId(),
-            'transactions' => $this->getTransactions()
-        ];
-    }
-
-    private function getTransactions()
-    {
-        return [
-            $this->execution->getTransaction()->toArray()
+            'payer_id' => $this->execution->getPayerId()
         ];
     }
 

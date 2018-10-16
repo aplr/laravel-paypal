@@ -6,13 +6,11 @@ class Execution {
 
     private $paymentId;
     private $payerId;
-    private $transaction;
 
-    public function __construct(string $paymentId, string $payerId, Transaction $transaction)
+    public function __construct(string $paymentId, string $payerId)
     {
         $this->paymentId = $paymentId;
         $this->payerId = $payerId;
-        $this->transaction = $transaction;
     }
 
     public function getPaymentId()
@@ -23,11 +21,6 @@ class Execution {
     public function getPayerId()
     {
         return $this->payerId;
-    }
-
-    public function getTransaction()
-    {
-        return $this->transaction;
     }
 
 }
