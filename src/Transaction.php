@@ -8,11 +8,13 @@ class Transaction implements Arrayable {
 
     private $amount;
     private $currency;
+    private $orderNumber;
 
-    public function __construct(float $amount, string $currency)
+    public function __construct(string $orderNumber, float $amount, string $currency)
     {
         $this->amount = $amount;
         $this->currency = $currency;
+        $this->orderNumber = $orderNumber;
     }
 
     public function toArray()
@@ -23,6 +25,11 @@ class Transaction implements Arrayable {
                 'currency' => $this->currency
             ]
         ];
+    }
+
+    public function getOrderNumber()
+    {
+        return $this->orderNumber;
     }
 
 }

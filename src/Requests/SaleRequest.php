@@ -35,6 +35,7 @@ class SaleRequest extends Request {
             'intent' => 'sale',
             'transactions' => $this->getTransactions(),
             'item_list' => $this->getItemList(),
+            'invoice_number' => $this->transaction->getOrderNumber(),
             'redirect_urls' => [
                 'cancel_url' => $this->cancelUrl,
                 'return_url' => $this->returnUrl
