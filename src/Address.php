@@ -14,7 +14,7 @@ class Address implements Arrayable {
     private $country;
     private $phone;
 
-    public function __construct(string $name, string $street, string $city, string $zip, string $country, string $phone, ?string $other = null)
+    public function __construct(string $name, string $street, string $city, string $zip, string $country, ?string $phone = null, ?string $other = null)
     {
         $this->name = $name;
         $this->street = $street;
