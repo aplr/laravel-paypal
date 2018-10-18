@@ -33,6 +33,10 @@ class SaleRequest extends Request {
                 'payment_method' => 'paypal'
             ],
             'transactions' => $this->getTransactions(),
+            'application_context' => [
+                'shipping_preference' => $this->transaction->hasAddress() ? 'SET_PROVIDED_ADDRESS' : 'GET_FROM_FILE',
+                'user_action' => 'commit'
+            ],
             'redirect_urls' => [
                 'cancel_url' => $this->cancelUrl,
                 'return_url' => $this->returnUrl

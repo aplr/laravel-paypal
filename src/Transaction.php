@@ -44,4 +44,9 @@ class Transaction implements Arrayable {
         return $itemList;
     }
 
+    public function hasAddress()
+    {
+        return !is_null($this->address);
+    }
+
 }
